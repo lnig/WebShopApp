@@ -11,4 +11,14 @@ public class User {
     private String surname;
     private String email;
     private String password;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='*****'" +
+                '}';
+    }
 }

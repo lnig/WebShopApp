@@ -26,7 +26,7 @@ public class LoggingInterceptor {
         String methodName = joinPoint.getSignature().getName();
         Object[] parameters = joinPoint.getArgs();
 
-        logger.info("Class " + className + ", method " + methodName + " called with parameters: " + Arrays.toString(parameters));
+        logger.info("Class " + className + ", method " + methodName + " called with parameters: " + Arrays.deepToString(parameters));
 
         Object result = joinPoint.proceed();
 
@@ -34,5 +34,4 @@ public class LoggingInterceptor {
 
         return result;
     }
-
 }
