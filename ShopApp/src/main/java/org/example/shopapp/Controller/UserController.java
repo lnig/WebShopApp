@@ -1,5 +1,7 @@
 package org.example.shopapp.Controller;
 
+import org.example.shopapp.JMS.NotificationController;
+import org.example.shopapp.Model.DTO.EmailDto;
 import org.example.shopapp.Model.DTO.Login;
 import org.example.shopapp.Model.DTO.User;
 import org.example.shopapp.Model.Data.Administrator;
@@ -7,6 +9,8 @@ import org.example.shopapp.Model.Data.Client;
 import org.example.shopapp.Repository.ClientRepository;
 import org.example.shopapp.Service.AdministratorService;
 import org.example.shopapp.Service.ClientService;
+import org.example.shopapp.Service.EmailService;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +19,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class UserController {
 
+
+    private final EmailService emailService;
     private final ClientService clientService;
     private final AdministratorService administratorService;
     @Autowired
-    public UserController(ClientService clientService, AdministratorService administratorService) {
+    public UserController(ClientService clientService, AdministratorService administratorService, EmailService emailService) {
         this.clientService = clientService;
         this.administratorService = administratorService;
+        this.emailService = emailService;
     }
 
     @GetMapping("/") // landing page
@@ -80,5 +88,18 @@ public class UserController {
         return "redirect:/register";
     }
 
+
+    @GetMapping("/test")
+    public String test(RedirectAttributes redirectAttributes) {
+        String to = "lakot54993@cnurbano.com";
+        String subject = "nie";
+        String text = "tak";
+
+        // Wywołanie serwisu do wysłania emaila
+        emailService.sendEmail(to, subject, text);
+
+        // Przekierowanie po wykonaniu operacji
+        return "Success";
+    }
 
 }
