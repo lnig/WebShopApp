@@ -10,7 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Getter
 @Setter
 @Entity
-@Table(name = "orderitem")
+@Table(name = "order_item")
 public class Orderitem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +22,12 @@ public class Orderitem {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

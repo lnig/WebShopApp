@@ -13,7 +13,7 @@ public class AdministratorService {
         this.administratorDao = administratorDao;
     }
 
-    public Administrator getAdministrator(String email, String password){
+    public Administrator getAdministratorByEmailAndPassword(String email, String password){
         return administratorDao.getAdministrator(email,password);
     }
 }

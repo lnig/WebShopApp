@@ -7,6 +7,7 @@ import org.example.shopapp.Model.Data.Client;
 import org.example.shopapp.Repository.ClientRepository;
 import org.example.shopapp.Service.AdministratorService;
 import org.example.shopapp.Service.ClientService;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+@Controller
 public class UserController {
 
     private final ClientService clientService;
@@ -46,8 +47,8 @@ public class UserController {
     public ModelAndView processLogin(@ModelAttribute("login") Login login){
         ModelAndView modelAndView = new ModelAndView();
 
-        Client isValidClient = clientService.getClient(login.getEmail(), login.getPassword());
-        Administrator isValidAdministrator = administratorService.getAdministrator(login.getEmail(), login.getPassword());
+        Client isValidClient = clientService.getClientByEmailAndPassword(login.getEmail(), login.getPassword());
+        Administrator isValidAdministrator = administratorService.getAdministratorByEmailAndPassword(login.getEmail(), login.getPassword());
         if(isValidAdministrator != null) System.out.println(isValidAdministrator.getEmail());
         if(isValidClient != null) System.out.println(isValidClient.getEmail());
         if (isValidClient != null || isValidAdministrator != null) {
@@ -61,20 +62,25 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public ModelAndView register(Model model){
+    public ModelAndView register() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("registerPage");
-        model.addAttribute("user", new User());
+        modelAndView.addObject("user", new User());
         return modelAndView;
     }
 
-//    @PostMapping("/register")
-//    public ModelAndView register(@ModelAttribute("user") User user){
-//
-//        Client client = usersService.mapToClient(user);
-//
-//
-//    }
+
+    @PostMapping("/register")
+    public String register(@ModelAttribute("user") User user){
+        Client client = clientService.getClientByEmail(user.getEmail());
+
+        if(client == null){
+            Client newClient = clientService.mapUserToClient(user);
+            clientService.saveClient(newClient);
+            return "redirect:/login";
+        }
+        return "redirect:/register";
+    }
 
 
 }

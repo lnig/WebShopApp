@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ClientRepository extends JpaRepository<Client, Integer> {
     Client findClientByEmailAndPassword(String email, String password);
+    Client findClientByEmail(String email);
     List<Client> findAll();
 
 }

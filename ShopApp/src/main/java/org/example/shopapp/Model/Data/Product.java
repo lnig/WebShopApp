@@ -35,9 +35,6 @@ public class Product {
     private BigDecimal price;
 
     @OneToMany(mappedBy = "product")
-    private Set<Cart> carts = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "product")
     private Set<Orderitem> orderitems = new LinkedHashSet<>();
 
 }

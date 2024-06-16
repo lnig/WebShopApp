@@ -37,9 +37,6 @@ public class Client {
     private String password;
 
     @OneToMany(mappedBy = "client")
-    private Set<Cart> carts = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "client")
     private Set<Order> orders = new LinkedHashSet<>();
 
     public Client(){}

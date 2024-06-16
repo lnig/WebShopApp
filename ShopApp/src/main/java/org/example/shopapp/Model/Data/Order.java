@@ -27,7 +27,7 @@ public class Order {
     private Client client;
 
     @NotNull
-    @Column(name = "totalPrice", nullable = false, precision = 5, scale = 2)
+    @Column(name = "total_price", nullable = false, precision = 5, scale = 2)
     private BigDecimal totalPrice;
 
     @Size(max = 255)
@@ -36,7 +36,7 @@ public class Order {
     private String address;
 
     @NotNull
-    @Column(name = "orderDate", nullable = false)
+    @Column(name = "order_date", nullable = false)
     private Instant orderDate;
 
     @OneToMany(mappedBy = "order")
