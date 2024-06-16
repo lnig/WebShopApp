@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ModelAndView processLogin(@ModelAttribute("login") Login login){
+    public String processLogin(@ModelAttribute("login") Login login){
         ModelAndView modelAndView = new ModelAndView();
 
         Client isValidClient = clientService.getClientByEmailAndPassword(login.getEmail(), login.getPassword());
@@ -52,13 +52,11 @@ public class UserController {
         if(isValidAdministrator != null) System.out.println(isValidAdministrator.getEmail());
         if(isValidClient != null) System.out.println(isValidClient.getEmail());
         if (isValidClient != null || isValidAdministrator != null) {
-            modelAndView.setViewName("homePage");
+            return "redirect:/products";
         } else {
-            modelAndView.setViewName("loginPage");
-            modelAndView.addObject("error", "Invalid email or password");
+            return "redirect:/";
+//            modelAndView.addObject("error", "Invalid email or password");
         }
-
-        return modelAndView;
     }
 
     @GetMapping("/register")

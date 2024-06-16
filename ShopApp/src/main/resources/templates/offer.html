@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="/css/offer.css">
+    <script src="/js/cart.js" defer></script>
+</head>
+<body>
+
+<h1>Products List</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${product.price}"></td>
+        <td><button class="add-to-cart-btn"
+                    th:text="'Add to Cart'"
+                    th:attr="data-product-id=${product.id}, data-product-name=${product.name}, data-product-description=${product.description} ,data-product-price=${product.price}">
+            Add to Cart
+        </button></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
