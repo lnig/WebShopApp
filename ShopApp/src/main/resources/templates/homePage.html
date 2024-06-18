@@ -2,9 +2,145 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" type="text/css" href="/css/homePage.css">
+    <link rel="stylesheet" th:href="@{/css/homePage.css}" />
 </head>
 <body>
-    <h1>Hello0</h1>
+<header>
+    <div class="logo">
+        <img src="/img/logo.png" alt="Shop Logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li>
+                <a th:href="@{/login}">
+                    <button id="button-login">Log In</button>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/register}">
+                    <button id="button-signup">Sign Up</button>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section class="hero">
+        <div class="hero-text">
+            <h1>TECHNOLOGY <br>HUB</h1>
+        </div>
+        <div class="hero-image">
+            <img src="/img/shop.jpg" alt="Electronics">
+        </div>
+    </section>
+    <section class="cta">
+        <div class="cta-text">
+            <h2>Discover Our Products</h2>
+            <p>Explore the latest in technology and innovation</p>
+        </div>
+        <div class="cta-button">
+            <a href="#" class="btn">Shop Now</a>
+        </div>
+    </section>
+    <section class="services">
+        <h2>Our Bestsellers</h2>
+        <p>Find the best deals on top electronics</p>
+        <div class="service-items">
+            <div class="service-item">
+                <div class="service-content">
+                    <div class="service-image">
+                        <img src="/img/sm.png" alt="Smartphone">
+                    </div>
+                    <div class="service-info">
+                        <h3>Smartphone</h3>
+                        <p>$699</p>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-content">
+                    <div class="service-image">
+                        <img src="/img/sm.png" alt="Smartphone">
+                    </div>
+                    <div class="service-info">
+                        <h3>Smartphone</h3>
+                        <p>$699</p>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-content">
+                    <div class="service-image">
+                        <img src="/img/sm.png" alt="Smartphone">
+                    </div>
+                    <div class="service-info">
+                        <h3>Smartphone</h3>
+                        <p>$699</p>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-content">
+                    <div class="service-image">
+                        <img src="/img/sm.png" alt="Smartphone">
+                    </div>
+                    <div class="service-info">
+                        <h3>Smartphone</h3>
+                        <p>$699</p>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-content">
+                    <div class="service-image">
+                        <img src="/img/sm.png" alt="Smartphone">
+                    </div>
+                    <div class="service-info">
+                        <h3>Smartphone</h3>
+                        <p>$699</p>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-content">
+                    <div class="service-image">
+                        <img src="/img/sm.png" alt="Smartphone">
+                    </div>
+                    <div class="service-info">
+                        <h3>Smartphone</h3>
+                        <p>$699</p>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-content">
+                    <div class="service-image">
+                        <img src="/img/sm.png" alt="Smartphone">
+                    </div>
+                    <div class="service-info">
+                        <h3>Smartphone</h3>
+                        <p>$699</p>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-content">
+                    <div class="service-image">
+                        <img src="/img/sm.png" alt="Smartphone">
+                    </div>
+                    <div class="service-info">
+                        <h3>Smartphone</h3>
+                        <p>$699</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 </body>
 </html>

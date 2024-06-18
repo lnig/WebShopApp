@@ -17,31 +17,31 @@
             <div id="name-surname-container">
                 <div class="input-label-container">
                     <label for="name">Name</label>
-                    <input type="text" name="name" th:field="${user.name}" placeholder="John">
+                    <input type="text" name="name" id="name" th:field="${user.name}" placeholder="John">
                 </div>
 
                 <div class="input-label-container">
                     <label for="surname">Surname</label>
-                    <input type="text" name="surname" th:field="${user.surname}" placeholder="Smith">
+                    <input type="text" name="surname" id="surname" th:field="${user.surname}" placeholder="Smith">
                 </div>
             </div>
 
             <div class="input-label-container">
                 <label for="email">Email</label>
-                <input type="email" name="email" th:field="${user.email}" placeholder="example.email@gmail.com">
+                <input type="email" name="email" id="email" th:field="${user.email}" placeholder="example.email@gmail.com">
             </div>
 
             <div class="input-label-container">
                 <label for="password">Password</label>
-                <input type="password" name="password" th:field="${user.password}" placeholder="Enter at least 8 characters">
+                <input type="password" name="password" id="password" th:field="${user.password}" placeholder="Enter at least 8 characters">
             </div>
 
             <button type="submit">Register</button>
 
         </form>
 
-        <form action="/login" method="get">
-            <p>Already have an account? <span>Sign in</span></p>
+        <form action="/login" method="get" class="redirect-to-login">
+            <p>Already have an account? <span><a th:href="@{/login}">Sign in</a></span></p>
         </form>
 
     </div>

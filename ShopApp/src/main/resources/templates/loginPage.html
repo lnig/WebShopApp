@@ -30,16 +30,16 @@
                         <input type="checkbox">
                         <label>Remember Me</label>
                     </div>
-<!--                    <label for="" id="forgot-pass">Forgot Password?</label>-->
+                    <label for="" id="forgot-pass">Forgot Password?</label>
                 </div>
 
                 <button>Log in</button>
             </form>
 
-            <form action="/register" method="get">
-                <p>Not a member yet? <span>Register now</span></p>
-            
+            <form action="/register" method="get" class="redirect-to-register">
+                <p>Not a member yet? <span><a th:href="@{/register}"> Register now</a></span></p>
             </form>
+
         </div>
     
         <div id="background-container">

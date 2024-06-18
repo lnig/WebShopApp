@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <link rel="stylesheet" type="text/css" href="/css/productsPage.css">
+    <link rel="stylesheet" th:href="@{/css/productsPage.css}" />
+    <script src="/js/cart.js" defer></script>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="/img/logo.png" alt="Shop Logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a th:href="@{/cart}">Cart</a>
+            </li>
+            <li>
+                <a th:href="@{/}">
+                    <button id="button-logout">Log out</button>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="services">
+        <h2>Our Products</h2>
+        <p>Find the best deals on top electronics</p>
+        <div class="service-items">
+            <div th:each="product : ${products}" class="service-item">
+                <div class="service-content">
+                    <div class="service-image">
+                        <img src="/img/sm.png" alt="Smartphone">
+                    </div>
+                    <div class="service-info">
+                        <h3 th:text="${product.name}">Product Name</h3>
+                        <p th:text="${product.description}" class="product-description">Product Description</p>
+                        <p th:text="'$' + ${product.price}" class="product-price">Product Price</p>
+                        <button class="add-to-cart-btn"
+                                th:text="'Add to Cart'"
+                                th:attr="data-product-id=${product.id}, data-product-name=${product.name}, data-product-description=${product.description}, data-product-price=${product.price}">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+</body>
+</html>

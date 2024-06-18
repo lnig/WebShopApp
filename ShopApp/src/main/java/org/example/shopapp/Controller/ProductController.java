@@ -25,7 +25,7 @@ public class ProductController {
     public ModelAndView getAllProducts(){
         ModelAndView modelAndView = new ModelAndView();
         List<Product> products = productService.getAllProducts();
-        modelAndView.setViewName("offer");
+        modelAndView.setViewName("productsPage");
         modelAndView.addObject("products", products);
         return modelAndView;
     }
