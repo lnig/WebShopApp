@@ -57,6 +57,8 @@ function displayCart() {
     const cart = JSON.parse(localStorage.getItem("cart"));
     const cartList = document.querySelector(".cart-list");
     cartList.innerHTML = "";
+    let totalPrice = 0;
+
     cart.forEach(product => {
         const productElement = document.createElement("div");
         productElement.classList.add("product");
@@ -105,5 +107,12 @@ function displayCart() {
         productElement.appendChild(removeButton);
 
         cartList.appendChild(productElement);
+
+        totalPrice += product.price * product.quantity;
     });
+
+    const totalPriceElement = document.createElement("div");
+    totalPriceElement.classList.add("total-price");
+    totalPriceElement.innerText = `Total Price: $${totalPrice.toFixed(2)}`;
+    cartList.appendChild(totalPriceElement);
 }

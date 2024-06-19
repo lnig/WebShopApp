@@ -28,7 +28,7 @@ public class ProductController {
         return modelAndView;
     }
 
-    @GetMapping("/1")
+    @GetMapping("/productsList")
     public ModelAndView showAllProducts(){
         ModelAndView modelAndView = new ModelAndView();
         List<Product> products = productService.getAllProducts();

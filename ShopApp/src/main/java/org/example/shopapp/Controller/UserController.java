@@ -104,7 +104,7 @@ public class UserController {
         emailService.sendEmail(to, subject, text);
 
         // Przekierowanie po wykonaniu operacji
-        return "Success";
+        return "redirect:/";
     }
 
 }
