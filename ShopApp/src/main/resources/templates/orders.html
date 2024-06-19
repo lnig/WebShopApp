@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+    <link rel="stylesheet" href="/css/orders.css">
+    <link rel="stylesheet" th:href="@{/css/orders.css}" />
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="/img/logo.png" alt="Shop Logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/products}">Products</a></li>
+            <li><a th:href="@{/cart}">Cart</a></li>
+            <li th:if="${session.clientId == null}">
+                <a th:href="@{/login}">
+                    <button id="button-login">Log In</button>
+                </a>
+            </li>
+            <li th:if="${session.clientId == null}">
+                <a th:href="@{/register}">
+                    <button id="button-signup">Sign Up</button>
+                </a>
+            </li>
+            <li th:if="${session.clientId != null}">
+                <a th:href="@{/logout}">
+                    <button id="button-logout">Log Out</button>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<div class="table-container">
+    <h1>Orders</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Client Name</th>
+            <th>Address</th>
+            <th>Total Price</th>
+            <th>Order Date</th>
+            <th>Products</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.id}">Order ID</td>
+            <td th:text="${order.client.name}">Client Name</td>
+            <td th:text="${order.address}">Address</td>
+            <td th:text="${order.totalPrice}">Total Price</td>
+            <td th:text="${#dates.format(order.orderDate, 'yyyy-MM-dd HH:mm')}">Order Date</td>
+            <td>
+                <table class="nested-table">
+                    <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item : ${order.orderitems}">
+                        <td th:text="${item.product.name}">Product Name</td>
+                        <td th:text="${item.quantity}">Quantity</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

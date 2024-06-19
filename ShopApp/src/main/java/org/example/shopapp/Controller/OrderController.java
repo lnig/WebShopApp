@@ -9,10 +9,14 @@ import org.example.shopapp.Model.Data.Product;
 import org.example.shopapp.Repository.ClientRepository;
 import org.example.shopapp.Repository.OrderRepository;
 import org.example.shopapp.Repository.ProductRepository;
+import org.example.shopapp.Repository.OrderItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -40,9 +44,7 @@ public class OrderController {
                              @RequestParam("totalPrice") BigDecimal totalPrice,
                              @RequestParam("cartItems") String cartItemsJson) {
 
-        // For simplicity, assuming the client ID is retrieved from the session
-        // In a real application, you would handle authentication and session management properly
-        Client client = clientRepository.findById(1).orElseThrow(); // Replace with session client ID
+        Client client = clientRepository.findById(2).orElseThrow();
 
         Order order = new Order();
         order.setClient(client);
@@ -60,6 +62,23 @@ public class OrderController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/orders")
+    public String viewOrdersWithProducts(Model model) {
+        List<Order> orders = orderRepository.findAll();
+
+        model.addAttribute("orders", orders);
+        return "orders";
+    }
+
+    @GetMapping("/userorders")
+    public String viewUserOrders(@SessionAttribute("clientId") Integer clientId, Model model) {
+        List<Order> orders = orderRepository.findByClientId(clientId);
+
+        model.addAttribute("orders", orders);
+        return "orders";
+    }
+
 
     private List<Orderitem> parseCartItems(String cartItemsJson, Order order, Client client) {
         ObjectMapper objectMapper = new ObjectMapper();
