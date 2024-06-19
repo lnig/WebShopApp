@@ -39,12 +39,14 @@
 
 <h1>Products List</h1>
 
-<form action="/place-order" method="post">
+<form action="/place-order" method="post" onsubmit="clearCart()">
     <div class="cart-list"></div>
-    <input type="text" name="address" placeholder="Enter your address" required />
-    <input type="hidden" name="totalPrice" id="totalPrice" />
-    <input type="hidden" name="cartItems" id="cartItems" />
-    <button type="submit">Place Order</button>
+    <div class="input-button-container">
+        <input type="text" name="address" placeholder="Enter your address" required />
+        <input type="hidden" name="totalPrice" id="totalPrice" />
+        <input type="hidden" name="cartItems" id="cartItems" />
+        <button type="submit">Place Order</button>
+    </div>
 </form>
 
 </body>

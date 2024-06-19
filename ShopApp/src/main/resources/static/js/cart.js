@@ -117,6 +117,11 @@ function displayCart() {
     totalPriceElement.innerText = `Total Price: $${totalPrice.toFixed(2)}`;
     cartList.appendChild(totalPriceElement);
 
+    // Set hidden inputs
     document.getElementById("totalPrice").value = totalPrice.toFixed(2);
     document.getElementById("cartItems").value = JSON.stringify(cart);
+}
+
+function clearCart() {
+    localStorage.removeItem("cart");
 }
