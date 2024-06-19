@@ -40,16 +40,111 @@ nav ul li:nth-child(3) {
     margin: 0 2rem 0 0;
 }
 
-#button-logout{
+#button-login, #button-signup, #button-logout{
     padding: 12px 36px;
     border-radius: 24px;
     border: none;
     outline: none;
     cursor: pointer;
+}
+
+#button-login, #button-logout{
     background: #EA4B60;
     color: white;
 }
 
-#button-logout:hover{
+#button-signup{
+    background-color: transparent;
+    border: 1px solid #EA4B60;
+    color: #EA4B60;
+}
+
+#button-login:hover, #button-login:hover{
     background: #E01833;
+}
+
+#button-signup:hover{
+    border-color: #b00013;
+    color: #b00013;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.cart-list {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.product:last-child {
+    border-bottom: none;
+}
+
+.product p {
+    margin: 0;
+    padding: 0 10px;
+}
+
+.product-name {
+    font-weight: bold;
+    flex: 2;
+}
+
+.product-description {
+    flex: 3;
+}
+
+.product-price {
+    flex: 1;
+    text-align: right;
+}
+
+.product-quantity {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quantity-button {
+    background-color: lightgray;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    margin: 0 5px;
+}
+
+.quantity-button:hover {
+    background-color: gray;
+}
+
+.remove-button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.remove-button:hover {
+    background-color: #c0392b;
 }

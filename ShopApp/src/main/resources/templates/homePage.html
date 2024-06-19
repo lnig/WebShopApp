@@ -14,16 +14,22 @@
     </div>
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/products}">Products</a></li>
+            <li><a th:href="@{/cart}">Cart</a></li>
+            <li th:if="${session.clientId == null}">
                 <a th:href="@{/login}">
                     <button id="button-login">Log In</button>
                 </a>
             </li>
-            <li>
+            <li th:if="${session.clientId == null}">
                 <a th:href="@{/register}">
                     <button id="button-signup">Sign Up</button>
+                </a>
+            </li>
+            <li th:if="${session.clientId != null}">
+                <a th:href="@{/logout}">
+                    <button id="button-logout">Log Out</button>
                 </a>
             </li>
         </ul>
@@ -51,61 +57,6 @@
         <h2>Our Bestsellers</h2>
         <p>Find the best deals on top electronics</p>
         <div class="service-items">
-            <div class="service-item">
-                <div class="service-content">
-                    <div class="service-image">
-                        <img src="/img/sm.png" alt="Smartphone">
-                    </div>
-                    <div class="service-info">
-                        <h3>Smartphone</h3>
-                        <p>$699</p>
-                    </div>
-                </div>
-            </div>
-            <div class="service-item">
-                <div class="service-content">
-                    <div class="service-image">
-                        <img src="/img/sm.png" alt="Smartphone">
-                    </div>
-                    <div class="service-info">
-                        <h3>Smartphone</h3>
-                        <p>$699</p>
-                    </div>
-                </div>
-            </div>
-            <div class="service-item">
-                <div class="service-content">
-                    <div class="service-image">
-                        <img src="/img/sm.png" alt="Smartphone">
-                    </div>
-                    <div class="service-info">
-                        <h3>Smartphone</h3>
-                        <p>$699</p>
-                    </div>
-                </div>
-            </div>
-            <div class="service-item">
-                <div class="service-content">
-                    <div class="service-image">
-                        <img src="/img/sm.png" alt="Smartphone">
-                    </div>
-                    <div class="service-info">
-                        <h3>Smartphone</h3>
-                        <p>$699</p>
-                    </div>
-                </div>
-            </div>
-            <div class="service-item">
-                <div class="service-content">
-                    <div class="service-image">
-                        <img src="/img/sm.png" alt="Smartphone">
-                    </div>
-                    <div class="service-info">
-                        <h3>Smartphone</h3>
-                        <p>$699</p>
-                    </div>
-                </div>
-            </div>
             <div class="service-item">
                 <div class="service-content">
                     <div class="service-image">

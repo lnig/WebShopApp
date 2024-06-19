@@ -36,11 +36,11 @@ nav ul li a {
     font-size: 24px;
 }
 
-nav ul li:nth-child(2) {
-    margin: 0 2rem;
+nav ul li:nth-child(3) {
+    margin: 0 2rem 0 0;
 }
 
-#button-login, #button-signup{
+#button-login, #button-signup, #button-logout{
     padding: 12px 36px;
     border-radius: 24px;
     border: none;
@@ -48,7 +48,7 @@ nav ul li:nth-child(2) {
     cursor: pointer;
 }
 
-#button-login{
+#button-login, #button-logout{
     background: #EA4B60;
     color: white;
 }
@@ -59,8 +59,13 @@ nav ul li:nth-child(2) {
     color: #EA4B60;
 }
 
-#button-login:hover{
+#button-login:hover, #button-login:hover{
     background: #E01833;
+}
+
+#button-signup:hover{
+    border-color: #b00013;
+    color: #b00013;
 }
 
 .hero {
