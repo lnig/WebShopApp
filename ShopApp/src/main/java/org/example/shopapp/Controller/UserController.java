@@ -1,5 +1,6 @@
 package org.example.shopapp.Controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.example.shopapp.JMS.NotificationController;
 import org.example.shopapp.Model.DTO.EmailDto;
 import org.example.shopapp.Model.DTO.Login;
@@ -52,18 +53,18 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String processLogin(@ModelAttribute("login") Login login){
-        ModelAndView modelAndView = new ModelAndView();
-
+    public String processLogin(@ModelAttribute("login") Login login, HttpSession session){
         Client isValidClient = clientService.getClientByEmailAndPassword(login.getEmail(), login.getPassword());
         Administrator isValidAdministrator = administratorService.getAdministratorByEmailAndPassword(login.getEmail(), login.getPassword());
-        if(isValidAdministrator != null) System.out.println(isValidAdministrator.getEmail());
-        if(isValidClient != null) System.out.println(isValidClient.getEmail());
-        if (isValidClient != null || isValidAdministrator != null) {
+
+        if (isValidClient != null) {
+            session.setAttribute("clientId", isValidClient.getId());
+            return "redirect:/products";
+        } else if (isValidAdministrator != null) {
+            session.setAttribute("adminId", isValidAdministrator.getId());
             return "redirect:/products";
         } else {
-            return "redirect:/";
-//            modelAndView.addObject("error", "Invalid email or password");
+            return "redirect:/login?error";
         }
     }
 
@@ -74,7 +75,6 @@ public class UserController {
         modelAndView.addObject("user", new User());
         return modelAndView;
     }
-
 
     @PostMapping("/register")
     public String register(@ModelAttribute("user") User user){

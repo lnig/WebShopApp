@@ -5,7 +5,6 @@
     <title>Products</title>
     <link rel="stylesheet" type="text/css" href="/css/productsPage.css">
     <link rel="stylesheet" th:href="@{/css/productsPage.css}" />
-    <script src="/js/cart.js" defer></script>
 </head>
 <body>
 <header>
@@ -15,9 +14,8 @@
     <nav>
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a th:href="@{/cart}">Cart</a>
-            </li>
+            <li><a th:href="@{/products}">Products</a></li>
+            <li><a th:href="@{/cart}">Cart</a></li>
             <li>
                 <a th:href="@{/}">
                     <button id="button-logout">Log out</button>
@@ -31,6 +29,12 @@
     <section class="services">
         <h2>Our Products</h2>
         <p>Find the best deals on top electronics</p>
+        <div th:if="${successMessage}" class="success-message">
+            <p th:text="${successMessage}"></p>
+        </div>
+        <div th:if="${errorMessage}" class="error-message">
+            <p th:text="${errorMessage}"></p>
+        </div>
         <div class="service-items">
             <div th:each="product : ${products}" class="service-item">
                 <div class="service-content">
@@ -41,19 +45,15 @@
                         <h3 th:text="${product.name}">Product Name</h3>
                         <p th:text="${product.description}" class="product-description">Product Description</p>
                         <p th:text="'$' + ${product.price}" class="product-price">Product Price</p>
-                        <button class="add-to-cart-btn"
-                                th:text="'Add to Cart'"
-                                th:attr="data-product-id=${product.id}, data-product-name=${product.name}, data-product-description=${product.description}, data-product-price=${product.price}">
-                            Add to Cart
-                        </button>
+                        <form th:action="@{/cart/add}" method="post">
+                            <input type="hidden" name="productId" th:value="${product.id}">
+                            <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </main>
-
-
-
 </body>
 </html>

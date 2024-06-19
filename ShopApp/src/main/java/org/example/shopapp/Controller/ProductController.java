@@ -1,14 +1,12 @@
 package org.example.shopapp.Controller;
 
-
-import ch.qos.logback.core.model.Model;
 import org.example.shopapp.Model.Data.Product;
 import org.example.shopapp.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -28,5 +26,39 @@ public class ProductController {
         modelAndView.setViewName("productsPage");
         modelAndView.addObject("products", products);
         return modelAndView;
+    }
+
+    @GetMapping("/1")
+    public ModelAndView showAllProducts(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<Product> products = productService.getAllProducts();
+        modelAndView.setViewName("productList");
+        modelAndView.addObject("products", products);
+        return modelAndView;
+    }
+
+    @GetMapping("/products/add")
+    public String showAddProductForm(Model model) {
+        model.addAttribute("product", new Product());
+        return "productForm";
+    }
+
+    @GetMapping("/products/edit/{id}")
+    public String showEditProductForm(@PathVariable("id") Integer id, Model model) {
+        Product product = productService.getProductById(id);
+        model.addAttribute("product", product);
+        return "productForm";
+    }
+
+    @PostMapping("/products/save")
+    public String saveProduct(@ModelAttribute("product") Product product) {
+        productService.saveProduct(product);
+        return "redirect:/products";
+    }
+
+    @GetMapping("/products/delete/{id}")
+    public String deleteProduct(@PathVariable("id") Integer id) {
+        productService.deleteProductById(id);
+        return "redirect:/products";
     }
 }

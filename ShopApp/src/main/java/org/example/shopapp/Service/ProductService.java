@@ -19,4 +19,16 @@ public class ProductService {
     public List<Product> getAllProducts(){
         return productDao.getAllProducts();
     }
+
+    public Product getProductById(Integer id) {
+        return productDao.findById(id);
+    }
+
+    public void saveProduct(Product product) {
+        productDao.save(product);
+    }
+
+    public void deleteProductById(Integer id) {
+        productDao.deleteById(id);
+    }
 }
