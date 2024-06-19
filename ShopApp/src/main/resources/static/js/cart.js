@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+    const cartList = document.querySelector(".cart-list");
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -115,4 +116,7 @@ function displayCart() {
     totalPriceElement.classList.add("total-price");
     totalPriceElement.innerText = `Total Price: $${totalPrice.toFixed(2)}`;
     cartList.appendChild(totalPriceElement);
+
+    document.getElementById("totalPrice").value = totalPrice.toFixed(2);
+    document.getElementById("cartItems").value = JSON.stringify(cart);
 }

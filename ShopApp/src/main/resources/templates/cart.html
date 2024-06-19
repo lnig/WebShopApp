@@ -39,9 +39,13 @@
 
 <h1>Products List</h1>
 
-<div class="cart-list">
-
-</div>
+<form action="/place-order" method="post">
+    <div class="cart-list"></div>
+    <input type="text" name="address" placeholder="Enter your address" required />
+    <input type="hidden" name="totalPrice" id="totalPrice" />
+    <input type="hidden" name="cartItems" id="cartItems" />
+    <button type="submit">Place Order</button>
+</form>
 
 </body>
 </html>

@@ -27,7 +27,7 @@ public class Order {
     private Client client;
 
     @NotNull
-    @Column(name = "total_price", nullable = false, precision = 5, scale = 2)
+    @Column(name = "total_price", nullable = false, precision = 10, scale = 2)
     private BigDecimal totalPrice;
 
     @Size(max = 255)
