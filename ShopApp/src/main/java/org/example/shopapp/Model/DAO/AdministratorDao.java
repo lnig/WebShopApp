@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface AdministratorDao {
     Administrator getAdministrator(String email, String password);
+    Administrator getAdministratorByEmail(String email);
     List<Administrator> getAllCAdministrators();
     void updateAdministrator(Administrator administrator);
     void deleteAdministrator(Administrator administrator);

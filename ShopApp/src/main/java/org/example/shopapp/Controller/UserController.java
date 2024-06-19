@@ -52,22 +52,6 @@ public class UserController {
         return modelAndView;
     }
 
-    @PostMapping("/login")
-    public String processLogin(@ModelAttribute("login") Login login, HttpSession session){
-        Client isValidClient = clientService.getClientByEmailAndPassword(login.getEmail(), login.getPassword());
-        Administrator isValidAdministrator = administratorService.getAdministratorByEmailAndPassword(login.getEmail(), login.getPassword());
-
-        if (isValidClient != null) {
-            session.setAttribute("clientId", isValidClient.getId());
-            return "redirect:/products";
-        } else if (isValidAdministrator != null) {
-            session.setAttribute("adminId", isValidAdministrator.getId());
-            return "redirect:/products";
-        } else {
-            return "redirect:/login?error";
-        }
-    }
-
     @GetMapping("/register")
     public ModelAndView register() {
         ModelAndView modelAndView = new ModelAndView();

@@ -21,6 +21,12 @@ public class AdministratorDaoImpl implements AdministratorDao {
     }
 
     @Override
+    public Administrator getAdministratorByEmail(String email) {
+        Administrator adminstrator = administratorRepository.findAdministratorByEmail(email);
+        return adminstrator;
+    }
+
+    @Override
     public List<Administrator> getAllCAdministrators() {
         return administratorRepository.findAll();
     }

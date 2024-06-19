@@ -11,29 +11,23 @@
     <div id="container">
         <div id="login-container">
             <form action="/login" method="post">
-                
                 <h1>Welcome Back</h1>
-                
                 <div class="input-label-container">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" th:value="${login.email}" placeholder="example.email@gmail.com">
+                    <input type="email" id="email" name="username" placeholder="example.email@gmail.com" required>
                 </div>
-                
-                
                 <div class="input-label-container">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="Password" th:value="${login.password}" placeholder="Enter at least 8 character">
+                    <input type="password" id="password" name="password" placeholder="Enter at least 8 characters" required>
                 </div>
-
                 <div id="remember-forgot-container">
                     <div id="checkbox-label-container">
-                        <input type="checkbox">
+                        <input type="checkbox" name="remember-me">
                         <label>Remember Me</label>
                     </div>
-                    <label for="" id="forgot-pass">Forgot Password?</label>
+                    <a href="#" id="forgot-pass">Forgot Password?</a>
                 </div>
-
-                <button>Log in</button>
+                <button type="submit">Log in</button>
             </form>
 
             <form action="/register" method="get" class="redirect-to-register">
