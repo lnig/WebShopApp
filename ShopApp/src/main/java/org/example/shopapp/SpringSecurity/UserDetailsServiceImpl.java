@@ -50,6 +50,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         HttpSession session = request.getSession(false);
         if (session != null && !session.isNew()) {
             session.setAttribute("UserDetails", userDetails);
+            session.setAttribute("isLoggedIn", true);
         }
 
         System.out.println("UserDetails: " + userDetails.getUsername() + " " + userDetails.getPassword() + " " + userDetails.getAuthorities());

@@ -26,14 +26,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UserController {
 
 
-    private final EmailService emailService;
+
     private final ClientService clientService;
     private final AdministratorService administratorService;
     @Autowired
-    public UserController(ClientService clientService, AdministratorService administratorService, EmailService emailService) {
+    public UserController(ClientService clientService, AdministratorService administratorService) {
         this.clientService = clientService;
         this.administratorService = administratorService;
-        this.emailService = emailService;
+
     }
 
     @GetMapping("/") // landing page
@@ -75,19 +75,6 @@ public class UserController {
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "redirect:/";
-    }
-
-    @GetMapping("/test")
-    public String test(RedirectAttributes redirectAttributes) {
-        String to = "lakot54993@cnurbano.com";
-        String subject = "nie";
-        String text = "tak";
-
-        // Wywołanie serwisu do wysłania emaila
-        emailService.sendEmail(to, subject, text);
-
-        // Przekierowanie po wykonaniu operacji
         return "redirect:/";
     }
 
