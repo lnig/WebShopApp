@@ -42,7 +42,12 @@ public class SpringSecurityConfiguration {
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/js/**")).permitAll()
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/")).permitAll()
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/register")).permitAll()
-                        .requestMatchers(AntPathRequestMatcher.antMatcher("/products/**")).hasRole("ADMIN")
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/orders")).hasRole("ADMIN")
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/productsList")).hasRole("ADMIN")
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/products/add")).hasRole("ADMIN")
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/products/edit/**")).hasRole("ADMIN")
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/products/save")).hasRole("ADMIN")
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/products/delete/**")).hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

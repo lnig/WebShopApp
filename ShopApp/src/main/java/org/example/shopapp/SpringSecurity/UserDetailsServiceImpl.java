@@ -47,13 +47,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             userDetails = buildUserDetails(client.getId(), client.getEmail(), client.getPassword(), Collections.singleton("CLIENT"));
         }
 
-        HttpSession session = request.getSession(false);
-        if (session != null && !session.isNew()) {
+        HttpSession session = request.getSession(true);
+        if (session != null) {
             session.setAttribute("UserDetails", userDetails);
             session.setAttribute("isLoggedIn", true);
         }
 
-        System.out.println("UserDetails: " + userDetails.getUsername() + " " + userDetails.getPassword() + " " + userDetails.getAuthorities());
+//        System.out.println("UserDetails: " + userDetails.getUsername() + " " + userDetails.getPassword() + " " + userDetails.getAuthorities());
         return userDetails;
     }
 

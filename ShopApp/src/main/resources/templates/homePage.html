@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,17 +17,20 @@
             <li><a th:href="@{/}">Home</a></li>
             <li><a th:href="@{/products}">Products</a></li>
             <li><a th:href="@{/cart}">Cart</a></li>
-            <li th:if="${session.isLoggedIn != null}">
+            <li sec:authorize="hasRole('ROLE_CLIENT')" ><a th:href="@{/userorders}">Order history</a></li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')" ><a th:href="@{/orders}">Orders history</a></li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')" ><a th:href="@{/productsList}">Products list</a></li>
+            <li th:if="${session.isLoggedIn == null}">
                 <a th:href="@{/login}">
                     <button id="button-login">Log In</button>
                 </a>
             </li>
-            <li th:if="${session.isLoggedIn != null}">
+            <li th:if="${session.isLoggedIn == null}">
                 <a th:href="@{/register}">
                     <button id="button-signup">Sign Up</button>
                 </a>
             </li>
-            <li th:if="${session.isLoggedIn == null}">
+            <li th:if="${session.isLoggedIn != null}">
                 <a th:href="@{/logout}">
                     <button id="button-logout">Log Out</button>
                 </a>

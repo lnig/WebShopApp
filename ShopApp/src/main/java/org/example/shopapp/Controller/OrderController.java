@@ -99,9 +99,14 @@ public class OrderController {
     }
 
     @GetMapping("/userorders")
-    public String viewUserOrders(@SessionAttribute("clientId") Integer clientId, Model model) {
-        List<Order> orders = orderRepository.findByClientId(clientId);
+    public String viewUserOrders(Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        UserDetails userDetails = (UserDetails) session.getAttribute("UserDetails");
 
+        Client client = clientService.getClientByEmail(userDetails.getUsername());
+
+        List<Order> orders = orderRepository.findByClientId(client.getId());
         model.addAttribute("orders", orders);
         return "orders";
     }
